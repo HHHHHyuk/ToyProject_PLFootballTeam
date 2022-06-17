@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 @Getter @Setter
-public class Team extends BaseEntity{
+public class Team extends BaseTimeEntity{
     @Id @GeneratedValue
     @Column(name="team_id")
     private Long id;

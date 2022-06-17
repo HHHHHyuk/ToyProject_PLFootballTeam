@@ -12,7 +12,7 @@ import static javax.persistence.FetchType.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
-public class TeamRank extends BaseEntity{
+public class TeamRank extends BaseTimeEntity{
 
     @Id @GeneratedValue
     @Column(name="team_rank_id")
