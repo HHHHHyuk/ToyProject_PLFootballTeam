@@ -1,18 +1,19 @@
-package study.jpaProject.entity;
+package study.jpaProject.domain.player;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import study.jpaProject.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 @Getter @Setter
-public class PlayerRank extends BaseTimeEntity{
+public class PlayerRank extends BaseTimeEntity {
 
     @Id @GeneratedValue
     @Column(name="player_rank_id")

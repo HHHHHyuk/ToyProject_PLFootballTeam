@@ -1,4 +1,4 @@
-package study.jpaProject.entity;
+package study.jpaProject.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

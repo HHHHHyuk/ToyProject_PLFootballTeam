@@ -1,21 +1,22 @@
-package study.jpaProject.entity;
+package study.jpaProject.domain.player;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import study.jpaProject.domain.BaseTimeEntity;
+import study.jpaProject.domain.team.Team;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
-public class Player extends BaseTimeEntity{
+public class Player extends BaseTimeEntity {
 
     @Id @GeneratedValue
     @Column(name="player_id")

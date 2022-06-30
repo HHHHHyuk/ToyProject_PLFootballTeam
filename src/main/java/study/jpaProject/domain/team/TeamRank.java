@@ -1,9 +1,10 @@
-package study.jpaProject.entity;
+package study.jpaProject.domain.team;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import study.jpaProject.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import static javax.persistence.FetchType.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
-public class TeamRank extends BaseTimeEntity{
+public class TeamRank extends BaseTimeEntity {
 
     @Id @GeneratedValue
     @Column(name="team_rank_id")
