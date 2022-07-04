@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-wrap">
+        <h1>팀관리 화면 - 리스트</h1>
+        <div class="btn-group float-right mb-1">
+            <a class="btn btn-primary" href="/team/settings/save" role="button">팀등록</a>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-info">
+                    <th scope="col">#</th>
+                    <th scope="col" style="width: 50%;">팀명</th>
+                    <th scope="col">수정일자</th>
+                    <th scope="col">관리</th>
+                </tr>
+            </thead>
+            <tbody id="teamListArea">
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/team/settings/list.js"></script>
+</body>
+</html>
+
+

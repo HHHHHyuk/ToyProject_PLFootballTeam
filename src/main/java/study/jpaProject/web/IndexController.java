@@ -20,6 +20,16 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/team/settings/list")
+    public String settingsList(){
+        return "team/settings/list";
+    }
+
+    @GetMapping("/team/settings/save")
+    public String settingsSave(){
+        return "team/settings/save";
+    }
+
     @GetMapping("/team/rank")
     public String teanRank(Model model){
         List<TeamListResponseDto> list = teamService.findAllDesc();

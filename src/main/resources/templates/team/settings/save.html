@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-wrap border-wrap">
+        <h1>팀관리 화면 - 팀 등록</h1>
+        <form class="row g-3" method="get" action="/team/settings/list" onsubmit="return save_check();">
+            <div class="col-md-6">
+                <label for="teamName" class="form-label">팀 이름</label>
+                <input type="text" class="form-control" id="teamName" name="teamName">
+            </div>
+            <div class="col-md-6">
+                <label for="teamArea" class="form-label">연고지</label>
+                <input type="text" class="form-control" id="teamArea" name="teamArea">
+            </div>
+            <div class="col-md-6">
+                <label for="stadium" class="form-label">경기장</label>
+                <input type="text" class="form-control" id="stadium" name="stadium">
+            </div>
+            <div class="col-md-6">
+                <label for="manager" class="form-label">감독</label>
+                <input type="text" class="form-control" id="manager" name="manager">
+            </div>
+            <div class="col-md-6">
+                <label for="foundingDate" class="form-label">창단일</label>
+                <input type="text" class="form-control" id="foundingDate" name="foundingDate">
+            </div>
+            <div class="col-md-12">
+                <label for="originalFileName" class="form-label">팀 로고</label>
+                <input class="form-control" type="file" id="originalFileName" name="originalFileName">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">등록</button>
+            </div>
+        </form>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/team/settings/save.js"></script>
+</body>
+</html>
+
+

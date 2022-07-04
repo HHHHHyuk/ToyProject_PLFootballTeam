@@ -1,0 +1,9 @@
+.container-wrap {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.border-wrap {
+    padding: 20px;
+    border: 1px groove #000000;
+}
