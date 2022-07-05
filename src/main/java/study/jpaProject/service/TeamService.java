@@ -23,6 +23,7 @@ public class TeamService {
     /** 팀 등록 ( 팀 이미지 미구현 ) */
     @Transactional
     public Long save(TeamSaveRequestDto requestDto){
+        teamRepository.findByTeamName(requestDto.getTeamName()).orElseThrow(() -> new IllegalArgumentException("입력하신 팀 이름은 이미 존재합니다."));
         return teamRepository.save(requestDto.toEntity()).getId();
     }
 

@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import study.jpaProject.service.TeamService;
 import study.jpaProject.web.dto.team.TeamListResponseDto;
+import study.jpaProject.web.dto.team.TeamResponseDto;
 
 import java.util.List;
 
@@ -28,6 +30,16 @@ public class IndexController {
     @GetMapping("/team/settings/save")
     public String settingsSave(){
         return "team/settings/save";
+    }
+
+    @GetMapping("/team/settings/update/{id}")
+    public String settingsSave(
+            @PathVariable Long id,
+            Model model
+    ){
+        TeamResponseDto teamResponseDto = teamService.findById(id);
+        model.addAttribute("team", teamResponseDto);
+        return "team/settings/update";
     }
 
     @GetMapping("/team/rank")

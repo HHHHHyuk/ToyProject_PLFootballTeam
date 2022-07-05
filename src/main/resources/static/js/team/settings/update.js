@@ -1,12 +1,9 @@
-function save_check(){
-    var valChk = false;
-    var ajaxChk = false;
-
+function update_check(){
     if($("#teamName").val()==null || ''==$("#teamName").val()){
         alert("팀 이름은 필수항목 입니다.");
     }else{
-        valChk=true;
-        var saveRequestDto = {
+        var teamId = $("#teamId").val();
+        var updateRequestDto = {
             "teamName" : $("#teamName").val()
             ,"teamArea" : $("#teamArea").val()
             ,"stadium" : $("#stadium").val()
@@ -14,18 +11,31 @@ function save_check(){
             ,"foundingDate" : $("#foundingDate").val()
         }
         $.ajax({
-            url : "/api/v1/teams"
-            ,data : JSON.stringify(saveRequestDto)
+            url : "/api/v1/teams/"+teamId
+            ,data : JSON.stringify(updateRequestDto)
             ,dataType : "json"
             ,cache : false
             ,async : false
             ,contentType:"application/json;charset=UTF-8"
-            ,type : "POST"
+            ,type : "PUT"
         }).done(function(r){
-            ajaxChk = true;
+            window.location.href="/team/settings/update/"+r;
         }).fail(function(r){
             alert(r);
         });
     }
-    return valChk && ajaxChk;
+}
+
+function delete_check(){
+    var teamId = $("#teamId").val();
+    $.ajax({
+        url : "/api/v1/teams/"+teamId
+        ,cache : false
+        ,async : false
+        ,type : "DELETE"
+    }).done(function(r){
+        window.location.href="/team/settings/list";
+    }).fail(function(r){
+        alert(r);
+    });
 }
