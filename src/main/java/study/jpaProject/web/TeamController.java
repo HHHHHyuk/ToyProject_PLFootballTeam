@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import study.jpaProject.domain.team.Team;
 import study.jpaProject.service.TeamService;
+import study.jpaProject.utils.ApiUtils;
+import study.jpaProject.utils.ApiUtils.ApiResult;
 import study.jpaProject.web.dto.team.TeamListResponseDto;
 import study.jpaProject.web.dto.team.TeamSaveRequestDto;
 import study.jpaProject.web.dto.team.TeamUpdateRequestDto;
@@ -31,8 +33,9 @@ public class TeamController {
     }
 
     @GetMapping("/api/v1/teams")
-    public List<TeamListResponseDto> list(){
-        return teamService.findAllDesc();
+    public ApiResult<List<TeamListResponseDto>> list(){
+        List<TeamListResponseDto> list = teamService.findAllDesc();
+        return ApiUtils.succes(list);
     }
 
 

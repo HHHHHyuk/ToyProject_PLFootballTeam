@@ -24,7 +24,7 @@ function save_check(){
         }).done(function(r){
             ajaxChk = true;
         }).fail(function(r){
-            alert(r);
+            alert(r.responseJSON.error.message);
         });
     }
     return valChk && ajaxChk;

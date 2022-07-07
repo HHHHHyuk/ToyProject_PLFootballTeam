@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import study.jpaProject.domain.team.Team;
+import study.jpaProject.error.DuplicateTeamException;
 import study.jpaProject.repository.TeamRepository;
 import study.jpaProject.web.dto.team.TeamListResponseDto;
 import study.jpaProject.web.dto.team.TeamResponseDto;
@@ -23,7 +24,8 @@ public class TeamService {
     /** 팀 등록 ( 팀 이미지 미구현 ) */
     @Transactional
     public Long save(TeamSaveRequestDto requestDto){
-        teamRepository.findByTeamName(requestDto.getTeamName()).orElseThrow(() -> new IllegalArgumentException("입력하신 팀 이름은 이미 존재합니다."));
+        boolean empty = teamRepository.findByTeamName(requestDto.getTeamName()).isEmpty();
+        if(!empty) { throw new DuplicateTeamException(""); }
         return teamRepository.save(requestDto.toEntity()).getId();
     }
 
