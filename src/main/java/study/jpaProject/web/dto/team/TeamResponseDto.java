@@ -15,6 +15,7 @@ public class TeamResponseDto {
     private String foundingDate;
     private String originalFileName;
     private String saveFileName;
+    private String imgPath;
     private LocalDateTime lastModifiedDate;
 
     public TeamResponseDto(Team entity) {
@@ -26,6 +27,7 @@ public class TeamResponseDto {
         this.foundingDate = entity.getFoundingDate();
         this.originalFileName = entity.getOriginalFileName();
         this.saveFileName = entity.getSaveFileName();
+        this.imgPath = "/webapp/images/team/" +entity.getSaveFileName();
         this.lastModifiedDate = entity.getLastModifiedDate();
     }
 }

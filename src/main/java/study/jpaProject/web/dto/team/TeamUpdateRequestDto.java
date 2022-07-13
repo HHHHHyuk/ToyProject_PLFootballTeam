@@ -14,11 +14,11 @@ public class TeamUpdateRequestDto {
     private String foundingDate;
     private String originalFileName;
     private String saveFileName;
-    private String filePath;
     private String tempFileName;
+    private String deleteYn;
 
     @Builder
-    public TeamUpdateRequestDto(String teamName, String teamArea, String stadium, String manager, String foundingDate, String originalFileName, String saveFileName, String filePath, String tempFileName) {
+    public TeamUpdateRequestDto(String teamName, String teamArea, String stadium, String manager, String foundingDate, String originalFileName, String saveFileName, String tempFileName, String deleteYn) {
         this.teamName = teamName;
         this.teamArea = teamArea;
         this.stadium = stadium;
@@ -26,7 +26,7 @@ public class TeamUpdateRequestDto {
         this.foundingDate = foundingDate;
         this.originalFileName = originalFileName;
         this.saveFileName = saveFileName;
-        this.filePath = filePath;
         this.tempFileName = tempFileName;
+        this.deleteYn = deleteYn;
     }
 }
