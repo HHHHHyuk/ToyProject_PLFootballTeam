@@ -12,6 +12,10 @@ function save_check(){
             ,"stadium" : $("#stadium").val()
             ,"manager" : $("#manager").val()
             ,"foundingDate" : $("#foundingDate").val()
+            ,"originalFileName" : $("#originalFileName").val()
+            ,"saveFileName" : $("#saveFileName").val()
+            ,"tempFileName" : $("#tempFileName").val()
+            ,"deleteYn" : $("#deleteYn").val()
         }
         $.ajax({
             url : "/api/v1/teams"

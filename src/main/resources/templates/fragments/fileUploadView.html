@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="fileUploadView">
+    <script>
+        function fileUpload(){
+            var form = $("#fileObj")[0].files[0];
+            var formData = new FormData();
+            formData.append("file",form);
+
+            $.ajax({
+                type : 'post',
+                url : '/file/upload',
+                data : formData,
+                enctype:'multipart/form-data',
+                processData : false,
+                contentType : false,
+                async    : false,
+                success : function(data) {
+                    $("#originalFileName").val(formData.get("file").name);
+                    $("#tempFileName").val(data.response);
+                    $("#saveFileName").val("teamLogo_"+data.response);
+                    $("#deleteYn").val("N");
+                },
+                error : function(error) {
+                    alert("파일 업로드에 실패하였습니다.");
+
+                }
+            });
+            $("#closeBtn").trigger("click");
+        }
+
+    </script>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">파일 업로드</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="mb-3">
+                    <form id="fileForm" method="post" action="/file/upload" enctype="multipart/form-data">
+                        <label for="fileObj" class="form-label">팀 로고 이미지 파일을 등록 해주세요.</label>
+                        <input class="form-control" type="file" id="fileObj">
+                    </form>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeBtn" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="fileUpload();">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

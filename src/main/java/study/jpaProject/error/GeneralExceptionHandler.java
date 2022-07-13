@@ -29,9 +29,9 @@ public class GeneralExceptionHandler {
         return new ResponseEntity<>(ApiUtils.error(message, status), headers, status);
     }
 
-    @ExceptionHandler( DuplicateTeamException.class )
+    @ExceptionHandler( CustomException.class )
     public ResponseEntity<?> handleDuplicateTeamException(Exception e){
-        return newResponse("이미 존재하는 팀 이름입니다.", HttpStatus.BAD_REQUEST);
+        return newResponse(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({
