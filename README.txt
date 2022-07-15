@@ -24,3 +24,4 @@
  - 시즌별 팀은 최대 20팀이 등록이 가능하다.
  
  프로젝트 목적 및 개요 : https://kimminhyuk.tistory.com/51?category=1008737
+ 프로젝트 진행상황 : https://kimminhyuk.tistory.com/78?category=1008737
