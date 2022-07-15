@@ -31,8 +31,9 @@
             </div>
             <div class="col-md-6">
                 <label for="originalFileName" class="form-label">팀 로고</label>
-                <input type="text" class="form-control" id="originalFileName" name="originalFileName">
+                <input type="text" class="form-control" id="originalFileName" name="originalFileName" readonly>
                 <button type="button" class="btn btn-primary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
+                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
                 <input type="hidden" id="saveFileName" name="saveFileName">
                 <input type="hidden" id="deleteYn" name="deleteYn">
                 <input type="hidden" id="tempFileName" name="tempFileName">

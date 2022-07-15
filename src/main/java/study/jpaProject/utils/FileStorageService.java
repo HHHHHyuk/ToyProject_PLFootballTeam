@@ -81,4 +81,13 @@ public class FileStorageService implements StorageService{
     public void deleteAll() {
 
     }
+
+    public boolean deleteFile(String fileName) throws IOException {
+        if(fileName!=null && !"".equals(fileName)){
+            Path path = Paths.get(uploadPath);
+            Path filePath = path.resolve(fileName);
+            Files.delete(filePath);
+        }
+        return true;
+    }
 }

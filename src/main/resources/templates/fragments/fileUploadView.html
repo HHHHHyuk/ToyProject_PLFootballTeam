@@ -6,7 +6,6 @@
             var form = $("#fileObj")[0].files[0];
             var formData = new FormData();
             formData.append("file",form);
-
             $.ajax({
                 type : 'post',
                 url : '/file/upload',
@@ -23,7 +22,6 @@
                 },
                 error : function(error) {
                     alert("파일 업로드에 실패하였습니다.");
-
                 }
             });
             $("#closeBtn").trigger("click");

@@ -43,6 +43,16 @@ public class IndexController {
         return "team/settings/update";
     }
 
+    @RequestMapping("/team/settings/view/{id}")
+    public String settingView(
+            @PathVariable Long id,
+            Model model
+    ){
+        TeamResponseDto teamResponseDto = teamService.findById(id);
+        model.addAttribute("team", teamResponseDto);
+        return "team/settings/view";
+    }
+
     @RequestMapping("/team/rank")
     public String teanRank(Model model){
         List<TeamListResponseDto> list = teamService.findAllDesc();

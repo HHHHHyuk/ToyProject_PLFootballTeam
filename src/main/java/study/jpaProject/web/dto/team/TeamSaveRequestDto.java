@@ -16,10 +16,9 @@ public class TeamSaveRequestDto {
     private String originalFileName;
     private String saveFileName;
     private String tempFileName;
-    private String deleteYn;
 
     @Builder
-    public TeamSaveRequestDto(String teamName, String teamArea, String stadium, String manager, String foundingDate, String originalFileName, String saveFileName, String tempFileName, String deleteYn) {
+    public TeamSaveRequestDto(String teamName, String teamArea, String stadium, String manager, String foundingDate, String originalFileName, String saveFileName, String tempFileName) {
         this.teamName = teamName;
         this.teamArea = teamArea;
         this.stadium = stadium;
@@ -28,7 +27,6 @@ public class TeamSaveRequestDto {
         this.originalFileName = originalFileName;
         this.saveFileName = saveFileName;
         this.tempFileName = tempFileName;
-        this.deleteYn = deleteYn;
     }
 
     public Team toEntity(){

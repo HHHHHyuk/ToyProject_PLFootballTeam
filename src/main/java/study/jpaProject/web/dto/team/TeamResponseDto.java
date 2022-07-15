@@ -27,7 +27,11 @@ public class TeamResponseDto {
         this.foundingDate = entity.getFoundingDate();
         this.originalFileName = entity.getOriginalFileName();
         this.saveFileName = entity.getSaveFileName();
-        this.imgPath = "/webapp/images/team/" +entity.getSaveFileName();
+        if(entity.getSaveFileName()!=null && !"".equals(entity.getSaveFileName())){
+            this.imgPath = "/webapp/images/team/" +entity.getSaveFileName();
+        }else{
+            this.imgPath = "/webapp/images/empty_team.png";
+        }
         this.lastModifiedDate = entity.getLastModifiedDate();
     }
 }

@@ -29,10 +29,14 @@
                 <label for="foundingDate" class="form-label">창단일</label>
                 <input type="text" class="form-control" id="foundingDate" name="foundingDate" th:value="${team.foundingDate}">
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <label for="originalFileName" class="form-label">팀 로고</label>
-                <img th:src="${team.imgPath}">
-                <input class="form-control" type="file" id="originalFileName" name="originalFileName">
+                <input type="text" class="form-control" id="originalFileName" name="originalFileName" th:value="${team.originalFileName}" readonly>
+                <button type="button" class="btn btn-primary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
+                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
+                <input type="hidden" id="saveFileName" name="saveFileName" th:value="${team.saveFileName}">
+                <input type="hidden" id="deleteYn" name="deleteYn" value="N">
+                <input type="hidden" id="tempFileName" name="tempFileName">
             </div>
             <div class="col-12">
                 <button type="button" onclick="update_check();" class="btn btn-primary">수정</button>
@@ -40,6 +44,7 @@
             </div>
         </form>
     </div>
+    <div th:replace="fragments/fileUploadView :: fileUploadView"></div>
     <div th:replace="fragments/footer :: footer"></div>
     <script src="/webapp/js/team/settings/update.js"></script>
 </body>

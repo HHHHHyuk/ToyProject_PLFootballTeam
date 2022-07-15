@@ -12,6 +12,7 @@ public class TeamListResponseDto {
     private String teamName;
     private String originalFileName;
     private String saveFileName;
+    private String imgPath;
     private LocalDateTime lastModifiedDate;
 
     @Builder
@@ -20,6 +21,7 @@ public class TeamListResponseDto {
         this.teamName = entity.getTeamName();
         this.originalFileName = entity.getOriginalFileName();
         this.saveFileName = entity.getSaveFileName();
+        this.imgPath = "/webapp/images/team/"+entity.getSaveFileName();
         this.lastModifiedDate = entity.getLastModifiedDate();
     }
 }

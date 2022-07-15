@@ -28,4 +28,15 @@ public class FileUtils {
         }
         return result;
     }
+
+    public static boolean delete(HttpServletRequest req, String fileName){
+        boolean result = false;
+        String filePath = req.getSession().getServletContext().getRealPath("/");
+
+        File file = new File(filePath+fileName);
+        if(file.exists()){
+            result = file.delete();
+        }
+        return result;
+    }
 }

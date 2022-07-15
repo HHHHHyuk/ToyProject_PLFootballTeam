@@ -47,6 +47,19 @@ public class TeamService {
     @Transactional
     public Long update(Long id, TeamUpdateRequestDto requestDto){
         Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 번호의 팀은 존재하지 않습니다. team_id = " + id));
+
+        if(requestDto.getTempFileName()!=null && !"".equals(requestDto.getTempFileName())){
+            if(team.getSaveFileName()!=null && !"".equals(team.getSaveFileName())){
+                FileUtils.delete(req, imgPath+"team/"+team.getSaveFileName());
+            }
+            FileUtils.move(req, uploadPath+"/"+requestDto.getTempFileName(), imgPath+"team", requestDto.getSaveFileName());
+        } else if ("Y".equals(requestDto.getDeleteYn())) {
+            if(FileUtils.delete(req, imgPath+"team/"+team.getSaveFileName())){
+                requestDto.saveFileDelete();
+            }
+
+        }
+
         team.updateTeam(
                 requestDto.getTeamName(), requestDto.getTeamArea(), requestDto.getStadium(), requestDto.getManager()
                 , requestDto.getFoundingDate(), requestDto.getOriginalFileName(), requestDto.getSaveFileName()
@@ -68,6 +81,9 @@ public class TeamService {
     @Transactional
     public void delete (Long id) {
         Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 번호의 팀은 존재하지 않습니다. team_id = " + id));
+        if(team.getSaveFileName()!=null && !"".equals(team.getSaveFileName())){
+            FileUtils.delete(req, imgPath+"team/"+ team.getSaveFileName());
+        }
         teamRepository.delete(team);
     }
 

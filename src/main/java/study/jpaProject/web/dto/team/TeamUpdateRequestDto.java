@@ -29,4 +29,8 @@ public class TeamUpdateRequestDto {
         this.tempFileName = tempFileName;
         this.deleteYn = deleteYn;
     }
+
+    public void saveFileDelete(){
+        this.saveFileName=null;
+    }
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/header :: header">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-wrap border-wrap">
+        <h1>팀관리 화면 - 팀 상세보기</h1>
+        <div class="card">
+            <img th:src="${team.imgPath}" src="/webapp/images/empty_team.png" class="card-img-top" alt="팀 로고 이미지">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${team.teamName}"></h5>
+                <p class="card-text" th:text="|연고지 : ${team.teamArea}|"></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="|경기장 : ${team.stadium}|"></li>
+                <li class="list-group-item" th:text="|창단일 : ${team.foundingDate}|"></li>
+                <li class="list-group-item" th:text="|감독 : ${team.manager}|"></li>
+            </ul>
+            <div class="mb-1">
+                <a class="btn btn-primary" href="/team/settings/list">목록</a>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/webapp/js/team/settings/view.js"></script>
+</body>
+</html>
+
+
