@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import study.jpaProject.domain.team.Team;
 import study.jpaProject.service.TeamService;
 import study.jpaProject.web.dto.team.TeamListResponseDto;
 import study.jpaProject.web.dto.team.TeamResponseDto;
@@ -53,11 +54,13 @@ public class IndexController {
         return "team/settings/view";
     }
 
-    @RequestMapping("/team/rank")
-    public String teanRank(Model model){
-        List<TeamListResponseDto> list = teamService.findAllDesc();
-        model.addAttribute("list", list);
-        return "teamRank";
+    @RequestMapping("/team/settings/rank/save/{id}")
+    public String teanRankSave(
+            @PathVariable("id") Long id,
+            Model model){
+        TeamResponseDto team = teamService.findById(id);
+        model.addAttribute("team", team);
+        return "team/settings/rankSave";
     }
 
 }

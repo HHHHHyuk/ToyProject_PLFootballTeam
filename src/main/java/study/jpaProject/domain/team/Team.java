@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
-@Getter @Setter
+@Getter
 public class Team extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="team_id")

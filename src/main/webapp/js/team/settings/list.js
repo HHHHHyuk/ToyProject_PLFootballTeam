@@ -14,7 +14,7 @@ $(document).ready(function(){
                 }
                 html += "<tr><td>"+r.response[i]['id']+"</td><td><img class=\"list_teamLogo\" src=\""+imgPath+"\"></td><td>"+
                     "<a class=\"customA\" href=\"/team/settings/view/"+r.response[i]['id']+"\">"+r.response[i]['teamName']+"</a></td><td>"+r.response[i]['lastModifiedDate']+"</td><td>"+
-                    "<a  class=\"btn btn-outline-danger btn-sm\" href=\"/team/settings/update/"+r.response[i]['id']+"\">수정</a></td></tr>";
+                    "<a  class=\"btn btn-outline-danger btn-sm\" href=\"/team/settings/update/"+r.response[i]['id']+"\">수정</a> <a  class=\"btn btn-primary btn-sm\" role=\"button\" href=\"/team/settings/rank/save/"+r.response[i]['id']+"\">시즌기록관리</a></td></tr>";
             }
             $("#teamListArea").append(html);
         }

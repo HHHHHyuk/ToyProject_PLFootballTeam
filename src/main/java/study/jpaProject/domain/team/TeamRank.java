@@ -1,9 +1,6 @@
 package study.jpaProject.domain.team;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import study.jpaProject.domain.BaseTimeEntity;
 
 import javax.persistence.*;
@@ -31,5 +28,32 @@ public class TeamRank extends BaseTimeEntity {
     private int lose;
     private int score;
     private int loss;
+    private int scoreAndLoss;
+
+    @Builder
+    public TeamRank(Long id, Team team, String season, int victory, int draw, int lose, int score, int loss){
+        this.id = id;
+        this.team = team;
+        this.season = season;
+        this.gameCount = victory+draw+lose;
+        this.victoryPoint = victory*3 + draw ;
+        this.victory = victory;
+        this.draw = draw;
+        this.lose = lose;
+        this.score = score;
+        this.loss = loss;
+        this.scoreAndLoss = score-loss;
+    }
+
+    public void updateTeamRank(int victory, int draw, int lose, int score, int loss){
+        this.gameCount = victory + draw + lose;
+        this.victoryPoint = victory*3 + draw;
+        this.victory = victory;
+        this.draw = draw;
+        this.lose = lose;
+        this.score = score;
+        this.loss = loss;
+        this.scoreAndLoss = score-loss;
+    }
 
 }
