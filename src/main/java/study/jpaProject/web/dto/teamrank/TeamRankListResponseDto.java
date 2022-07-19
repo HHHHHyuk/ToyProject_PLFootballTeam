@@ -4,12 +4,10 @@ import lombok.Getter;
 import study.jpaProject.domain.team.Team;
 import study.jpaProject.domain.team.TeamRank;
 
-import java.time.LocalDateTime;
-
 @Getter
-public class TeamRankResponseDto {
-    private Long id;
-    private String season;
+public class TeamRankListResponseDto {
+    private String teamName;
+    private String imgPath;
     private int gameCount;
     private int victoryPoint;
     private int victory;
@@ -19,10 +17,10 @@ public class TeamRankResponseDto {
     private int loss;
     private int scoreAndLoss;
 
-    public TeamRankResponseDto(TeamRank entity) {
+    public TeamRankListResponseDto(TeamRank entity) {
         if(entity!=null){
-            this.id = entity.getId();
-            this.season = entity.getSeason();
+            this.imgPath = "/webapp/images/team/"+entity.getTeam().getSaveFileName();
+            this.teamName = entity.getTeam().getTeamName();
             this.gameCount = entity.getGameCount();
             this.victoryPoint = entity.getVictoryPoint();
             this.victory = entity.getVictory();
@@ -33,4 +31,5 @@ public class TeamRankResponseDto {
             this.scoreAndLoss = entity.getScoreAndLoss();
         }
     }
+
 }

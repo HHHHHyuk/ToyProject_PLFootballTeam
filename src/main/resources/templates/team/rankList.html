@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-wrap">
+        <select class="form-select" aria-label="Default select example" id="season" onchange="season_val();">
+            <th:block th:each="num : ${#numbers.sequence(21,10)}">
+                <option th:text="|20${num}-${num+1}|" th:value="|20${num}|"></option>
+            </th:block>
+        </select>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-info">
+                    <th scope="col">순위</th>
+                    <th scope="col" style="width: 30%;">팀</th>
+                    <th scope="col">경기수</th>
+                    <th scope="col">승점</th>
+                    <th scope="col">승</th>
+                    <th scope="col">무</th>
+                    <th scope="col">패</th>
+                    <th scope="col">득점</th>
+                    <th scope="col">실점</th>
+                    <th scope="col">득실차</th>
+                </tr>
+            </thead>
+            <tbody id="teamRankListArea">
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/webapp/js/team/rankList.js"></script>
+</body>
+</html>
+
+

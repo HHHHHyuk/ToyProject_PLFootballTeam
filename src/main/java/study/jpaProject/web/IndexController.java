@@ -63,4 +63,9 @@ public class IndexController {
         return "team/settings/rankSave";
     }
 
+    @RequestMapping("/team/rankList")
+    public String teamRankList(){
+        return "team/rankList";
+    }
+
 }

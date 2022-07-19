@@ -10,8 +10,10 @@ import study.jpaProject.utils.ApiUtils.ApiResult;
 import study.jpaProject.web.dto.team.TeamListResponseDto;
 import study.jpaProject.web.dto.team.TeamSaveRequestDto;
 import study.jpaProject.web.dto.team.TeamUpdateRequestDto;
+import study.jpaProject.web.dto.teamrank.TeamRankListResponseDto;
 import study.jpaProject.web.dto.teamrank.TeamRankResponseDto;
 import study.jpaProject.web.dto.teamrank.TeamRankSaveRequestDto;
+import study.jpaProject.web.dto.teamrank.TeamRankSearchCondition;
 
 import java.util.List;
 
@@ -56,6 +58,13 @@ public class TeamController {
         teamRankService.delete(id);
         return id;
     }
+
+    @GetMapping("/api/v1/teams/rank")
+    public ApiResult<List<TeamRankListResponseDto>> teamRankList(TeamRankSearchCondition condition){
+        return ApiUtils.succes(teamRankService.getTeamRankList(condition));
+    }
+
+
 
 
 
