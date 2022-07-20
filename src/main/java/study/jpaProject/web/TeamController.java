@@ -1,6 +1,8 @@
 package study.jpaProject.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import study.jpaProject.domain.team.Team;
 import study.jpaProject.service.TeamRankService;
@@ -39,8 +41,8 @@ public class TeamController {
     }
 
     @GetMapping("/api/v1/teams")
-    public ApiResult<List<TeamListResponseDto>> list(){
-        List<TeamListResponseDto> list = teamService.findAllDesc();
+    public ApiResult<Page<TeamListResponseDto>> list(Pageable pageable){
+        Page<TeamListResponseDto> list = teamService.findAllDesc(pageable);
         return ApiUtils.succes(list);
     }
 

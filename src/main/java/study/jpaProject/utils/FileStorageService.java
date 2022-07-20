@@ -6,6 +6,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import study.jpaProject.error.CustomException;
 
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 @Service
@@ -33,7 +35,14 @@ public class FileStorageService implements StorageService{
     }
 
     @Override
-    public String store(MultipartFile file) {
+    public String store(MultipartFile file, boolean isImage) {
+        String lowerFile = Objects.requireNonNull(file.getOriginalFilename()).toLowerCase();
+        if(isImage && !(
+                lowerFile.contains(".png") ||lowerFile.contains(".jpg") || lowerFile.contains(".gif") ||
+                        lowerFile.contains(".jpeg")|| lowerFile.contains(".bmp") )
+        ){
+            throw new CustomException("이미지 파일만 등록이 가능합니다. ( png, jpg, jpeg, bmp, gif ) ");
+        }
         String fileName = System.currentTimeMillis()+"."+ FilenameUtils.getExtension(file.getOriginalFilename());
         try {
             if(file.isEmpty()){

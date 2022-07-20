@@ -7,24 +7,24 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container-wrap">
-        <select class="form-select" aria-label="Default select example" id="season" onchange="season_val();">
+        <select class="form-select" aria-label="Default select example" id="season" onchange="selected_season();">
             <th:block th:each="num : ${#numbers.sequence(21,10)}">
                 <option th:text="|20${num}-${num+1}|" th:value="|20${num}|"></option>
             </th:block>
         </select>
-        <table class="table table-hover">
+        <table class="table table-hover" id="teamRankList_table">
             <thead>
                 <tr class="table-info">
                     <th scope="col">순위</th>
                     <th scope="col" style="width: 30%;">팀</th>
                     <th scope="col">경기수</th>
-                    <th scope="col">승점</th>
-                    <th scope="col">승</th>
-                    <th scope="col">무</th>
-                    <th scope="col">패</th>
-                    <th scope="col">득점</th>
-                    <th scope="col">실점</th>
-                    <th scope="col">득실차</th>
+                    <th scope="col" onclick="selected_list(null);">승점</th>
+                    <th scope="col" onclick="selected_list('victory');">승</th>
+                    <th scope="col" onclick="selected_list('draw');">무</th>
+                    <th scope="col" onclick="selected_list('lose');">패</th>
+                    <th scope="col" onclick="selected_list('score');">득점</th>
+                    <th scope="col" onclick="selected_list('loss');">실점</th>
+                    <th scope="col" onclick="selected_list('scoreAndLoss');">득실차</th>
                 </tr>
             </thead>
             <tbody id="teamRankListArea">

@@ -1,6 +1,15 @@
 $(document).ready(function(){
+    selected_list(null);
+});
+
+function selected_season(){
+    selected_list(null);
+}
+
+function selected_list(orderValue){
     var teamRankSearchCondition = {
-       "season" : $("#season option:checked").val()
+        "season" : $("#season option:checked").val(),
+        "orderValue" :orderValue
     }
     $.ajax({
         url : "/api/v1/teams/rank"
@@ -19,6 +28,25 @@ $(document).ready(function(){
                     "</tr>";
             }
             $("#teamRankListArea").append(html);
+
+            var tdIndex = 3;
+            switch (orderValue){
+                case "victory" : tdIndex=4; break;
+                case "draw" : tdIndex=5; break;
+                case "lose" : tdIndex=6; break;
+                case "score" : tdIndex=7; break;
+                case "loss" : tdIndex=8; break;
+                case "scoreAndLoss" : tdIndex=9; break;
+            }
+            $("tr>th").removeClass("selected_th");
+            $("tr>th:eq("+tdIndex+")").addClass("selected_th");
+            $("tr").each(function(index, item){
+                $(this).children("td").eq(tdIndex).addClass("selected_td");
+            });
+        }else{
+            $("#teamRankListArea").html("");
+            var html = "<tr><td colspan='10' style='text-align: center;'><strong>해당 시즌에 대한 데이터가 없습니다.</strong></td></tr>";
+            $("#teamRankListArea").append(html);
         }
     });
-});
+}

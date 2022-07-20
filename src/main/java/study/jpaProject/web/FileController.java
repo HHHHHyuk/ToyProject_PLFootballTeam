@@ -24,11 +24,11 @@ public class FileController {
     private final FileStorageService storageService;
 
     @PostMapping("/file/upload")
-    public ApiUtils.ApiResult<String> upload(HttpServletRequest req) throws IllegalStateException {
+    public ApiUtils.ApiResult<String> upload(HttpServletRequest req, boolean isImage) throws IllegalStateException {
         MultipartHttpServletRequest multipartReq = (MultipartHttpServletRequest) req;
         MultiValueMap<String, MultipartFile> multiFileMap = multipartReq.getMultiFileMap();
         List<MultipartFile> file = multiFileMap.get("file");
-        return ApiUtils.succes(storageService.store(file.get(0)));
+        return ApiUtils.succes(storageService.store(file.get(0), isImage));
     }
 
     @DeleteMapping("/file/upload")

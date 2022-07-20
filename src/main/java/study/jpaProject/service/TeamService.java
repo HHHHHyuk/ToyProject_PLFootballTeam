@@ -2,10 +2,13 @@ package study.jpaProject.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import study.jpaProject.domain.team.Team;
 import study.jpaProject.error.CustomException;
+import study.jpaProject.repository.TeamQueryRepository;
 import study.jpaProject.repository.TeamRepository;
 import study.jpaProject.utils.FileUtils;
 import study.jpaProject.web.dto.team.TeamListResponseDto;
@@ -23,6 +26,7 @@ import java.util.stream.Collectors;
 public class TeamService {
 
     private final TeamRepository teamRepository;
+    private final TeamQueryRepository teamQueryRepository;
 
     private final HttpServletRequest req;
 
@@ -72,10 +76,8 @@ public class TeamService {
         return new TeamResponseDto(team);
     }
 
-    public List<TeamListResponseDto> findAllDesc(){
-        return teamRepository.findAllDesc().stream()
-                .map(TeamListResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<TeamListResponseDto> findAllDesc(Pageable pageable){
+        return teamQueryRepository.findTeamListPageAllDesc(pageable);
     }
 
     @Transactional

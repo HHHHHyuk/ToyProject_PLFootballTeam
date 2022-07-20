@@ -33,8 +33,20 @@
     margin: 0 auto;
 }
 
-#teamRankListArea .teamRankList_logo{
+#teamRankList_table .teamRankList_logo{
     width: 20px;
     height: 20px;
     margin-right: 10px;
+}
+
+#teamRankList_table .selected_th {
+    border-right: 3px solid red;
+    border-left: 3px solid red;
+    background-color: #fd7373;
+    color: white;
+}
+
+#teamRankList_table .selected_td{
+    border-right: 3px solid red;
+    border-left: 3px solid red;
 }
