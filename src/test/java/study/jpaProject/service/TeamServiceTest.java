@@ -30,7 +30,7 @@ class TeamServiceTest {
     void save_테스트() {
         //given
         TeamSaveRequestDto requestDto = new TeamSaveRequestDto("테스트팀", "테스트지역", "테스트경기장", "테스트감독",
-                "20220630","테스트원본파일", "테스트저장파일","테스트경로", "테스트임시파일");
+                "20220630","테스트원본파일", "테스트저장파일", "테스트임시파일");
 
         //when
         Long savedId = teamService.save(requestDto);
@@ -43,13 +43,13 @@ class TeamServiceTest {
     void update_테스트() {
         //given
         TeamSaveRequestDto requestDto = new TeamSaveRequestDto("테스트팀", "테스트지역", "테스트경기장", "테스트감독",
-                "20220630","테스트원본파일", "테스트저장파일","테스트경로", "테스트임시파일");
+                "20220630","테스트원본파일", "테스트저장파일", "테스트임시파일");
         Long savedId = teamService.save(requestDto);
 
 
 
         TeamUpdateRequestDto updateRequestDto = new TeamUpdateRequestDto("테스트팀1", "테스트지역1", "테스트경기장1", "테스트감독1",
-                "20220630","테스트원본파일", "테스트저장파일","테스트경로", "테스트임시파일");
+                "20220630","테스트원본파일", "테스트저장파일", "테스트임시파일", null);
 
         //when
         teamService.update(savedId, updateRequestDto);
@@ -65,7 +65,7 @@ class TeamServiceTest {
     void findById_테스트() {
         //given
         TeamSaveRequestDto requestDto = new TeamSaveRequestDto("테스트팀", "테스트지역", "테스트경기장", "테스트감독",
-                "20220630","테스트원본파일", "테스트저장파일","테스트경로", "테스트임시파일");
+                "20220630","테스트원본파일", "테스트저장파일", "테스트임시파일");
         Long savedId = teamService.save(requestDto);
 
         //when
@@ -79,7 +79,7 @@ class TeamServiceTest {
     void findAllDesc_테스트() {
         //given
         TeamSaveRequestDto requestDto = new TeamSaveRequestDto("테스트팀", "테스트지역", "테스트경기장", "테스트감독",
-                "20220630","테스트원본파일", "테스트저장파일","테스트경로", "테스트임시파일");
+                "20220630","테스트원본파일", "테스트저장파일", "테스트임시파일");
         Long savedId = teamService.save(requestDto);
 
         //when
@@ -95,7 +95,7 @@ class TeamServiceTest {
     void delete_테스트() {
         //given
         TeamSaveRequestDto requestDto = new TeamSaveRequestDto("테스트팀", "테스트지역", "테스트경기장", "테스트감독",
-                "20220630","테스트원본파일", "테스트저장파일","테스트경로", "테스트임시파일");
+                "20220630","테스트원본파일", "테스트저장파일", "테스트임시파일");
         Long savedId = teamService.save(requestDto);
 
         //when

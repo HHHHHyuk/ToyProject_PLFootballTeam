@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/header :: header">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-wrap border-wrap">
+        <h1>선수관리 화면 - 선수 수정</h1>
+        <input type="hidden" id="playerId" th:value="${player.id}" />
+        <form class="row g-3" id="playerSaveForm" method="post" onsubmit="return save_check();">
+            <div class="col-md-12">
+                <lable for="teamId" class="form-label">팀</lable>
+                <select class="form-select" aria-label="Default select example" id="teamId">
+                    <option value>전체</option>
+                    <th:block th:each="team : ${teamList}">
+                        <option th:text="${team.teamName}" th:value="${team.id}" th:selected="${team.id}==${player.teamId}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="playerName" class="form-label">선수 이름</label>
+                <input type="text" class="form-control" id="playerName" name="playerName" th:value="${player.playerName}">
+            </div>
+            <div class="col-md-4">
+                <label for="nationality" class="form-label">국적</label>
+                <input type="text" class="form-control" id="nationality" name="nationality" th:value="${player.nationaliy}">
+            </div>
+            <div class="col-md-4">
+                <label for="height" class="form-label">신장</label>
+                <input type="number" class="form-control" id="height" name="height" th:value="${player.height}">
+            </div>
+            <div class="col-md-4">
+                <label for="weight" class="form-label">무게</label>
+                <input type="number" class="form-control" id="weight" name="weight" th:value="${player.weight}">
+            </div>
+            <div class="col-md-4">
+                <label for="position" class="form-label">포지션</label>
+                <input type="text" class="form-control" id="position" name="position" th:value="${player.position}">
+            </div>
+            <div class="col-md-4">
+                <label for="backNumber" class="form-label">등번호</label>
+                <input type="number" class="form-control" id="backNumber" name="backNumber" th:value="${player.backNumber}">
+            </div>
+            <div class="col-md-4">
+                <label for="originalFileName" class="form-label">선수 이미지</label>
+                <input type="text" class="form-control" id="originalFileName" name="originalFileName" th:value="${player.originalFileName}" readonly>
+                <button type="button" class="btn btn-primary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
+                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
+                <input type="hidden" id="saveFileName" name="saveFileName" th:value="${player.saveFileName}">
+                <input type="hidden" id="deleteYn" name="deleteYn" value="N">
+                <input type="hidden" id="tempFileName" name="tempFileName">
+            </div>
+            <div class="col-md-12">
+                <button type="button" onclick="update_check();" class="btn btn-primary">수정</button>
+                <button type="button" onclick="delete_check();" class="btn btn-danger">삭제</button>
+            </div>
+        </form>
+    </div>
+    <div th:replace="fragments/imageUploadView :: imageUploadView"></div>
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/webapp/js/player/settings/update.js"></script>
+</body>
+</html>
+
+

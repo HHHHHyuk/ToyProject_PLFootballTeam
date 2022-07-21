@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import study.jpaProject.domain.team.Team;
+import study.jpaProject.service.PlayerService;
 import study.jpaProject.service.TeamService;
+import study.jpaProject.web.dto.player.PlayerResponseDto;
 import study.jpaProject.web.dto.team.TeamListResponseDto;
 import study.jpaProject.web.dto.team.TeamResponseDto;
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class IndexController {
 
     private final TeamService teamService;
+    private final PlayerService playerService;
 
     @RequestMapping("/")
     public String index(){
@@ -25,17 +28,17 @@ public class IndexController {
     }
 
     @RequestMapping("/team/settings/list")
-    public String settingsList(){
+    public String teamList(){
         return "team/settings/list";
     }
 
     @RequestMapping("/team/settings/save")
-    public String settingsSave(){
+    public String teamSave(){
         return "team/settings/save";
     }
 
     @RequestMapping("/team/settings/update/{id}")
-    public String settingsSave(
+    public String teamUpdate(
             @PathVariable Long id,
             Model model
     ){
@@ -45,7 +48,7 @@ public class IndexController {
     }
 
     @RequestMapping("/team/settings/view/{id}")
-    public String settingView(
+    public String teamView(
             @PathVariable Long id,
             Model model
     ){
@@ -68,4 +71,34 @@ public class IndexController {
         return "team/rankList";
     }
 
+    @RequestMapping("/player/settings/list")
+    public String playerList(Model model) {
+        List<TeamListResponseDto> list = teamService.findAllTeamNameAsc();
+        model.addAttribute("teamList", list);
+        return "player/settings/list";
+    }
+
+    @RequestMapping("/player/settings/save")
+    public String playerSave(Model model) {
+        List<TeamListResponseDto> list = teamService.findAllTeamNameAsc();
+        model.addAttribute("teamList", list);
+        return "player/settings/save";
+    }
+
+    @RequestMapping("/player/settings/view/{id}")
+    public String playerView(@PathVariable("id") Long id, Model model) {
+        PlayerResponseDto player = playerService.findById(id);
+        model.addAttribute("player", player);
+        return "player/settings/view";
+    }
+
+    @RequestMapping("/player/settings/update/{id}")
+    public String playerUpdate(@PathVariable Long id, Model model ){
+        List<TeamListResponseDto> list = teamService.findAllTeamNameAsc();
+        model.addAttribute("teamList", list);
+
+        PlayerResponseDto playerResponseDto = playerService.findById(id);
+        model.addAttribute("player", playerResponseDto);
+        return "player/settings/update";
+    }
 }

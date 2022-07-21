@@ -28,21 +28,20 @@ public class TeamService {
     private final TeamRepository teamRepository;
     private final TeamQueryRepository teamQueryRepository;
 
-    private final HttpServletRequest req;
+    private final HttpServletRequest request;
 
     @Value("${spring.servlet.multipart.location}")
     private  String uploadPath;
 
     private final String imgPath = "images/";
 
-    /** 팀 등록 ( 팀 이미지 미구현 ) */
     @Transactional
     public Long save(TeamSaveRequestDto requestDto){
         boolean empty = teamRepository.findByTeamName(requestDto.getTeamName()).isEmpty();
         if(!empty) { throw new CustomException("이미 존재하는 팀 이름입니다."); }
 
         if(requestDto.getTempFileName()!=null && !"".equals(requestDto.getTempFileName())){
-            FileUtils.move(req, uploadPath+"/"+requestDto.getTempFileName(), imgPath+"team", requestDto.getSaveFileName());
+            FileUtils.move(request, uploadPath+"/"+requestDto.getTempFileName(), imgPath+"team", requestDto.getSaveFileName());
         }
 
         return teamRepository.save(requestDto.toEntity()).getId();
@@ -54,14 +53,13 @@ public class TeamService {
 
         if(requestDto.getTempFileName()!=null && !"".equals(requestDto.getTempFileName())){
             if(team.getSaveFileName()!=null && !"".equals(team.getSaveFileName())){
-                FileUtils.delete(req, imgPath+"team/"+team.getSaveFileName());
+                FileUtils.delete(request, imgPath+"team/"+team.getSaveFileName());
             }
-            FileUtils.move(req, uploadPath+"/"+requestDto.getTempFileName(), imgPath+"team", requestDto.getSaveFileName());
+            FileUtils.move(request, uploadPath+"/"+requestDto.getTempFileName(), imgPath+"team", requestDto.getSaveFileName());
         } else if ("Y".equals(requestDto.getDeleteYn())) {
-            if(FileUtils.delete(req, imgPath+"team/"+team.getSaveFileName())){
+            if(FileUtils.delete(request, imgPath+"team/"+team.getSaveFileName())){
                 requestDto.saveFileDelete();
             }
-
         }
 
         team.updateTeam(
@@ -80,11 +78,19 @@ public class TeamService {
         return teamQueryRepository.findTeamListPageAllDesc(pageable);
     }
 
+    public List<TeamListResponseDto> findAllDesc(){
+        return teamRepository.findAllDesc().stream().map(TeamListResponseDto::new).collect(Collectors.toList());
+    }
+
+    public List<TeamListResponseDto> findAllTeamNameAsc(){
+        return teamRepository.findAllByOrderByTeamNameAsc().stream().map(TeamListResponseDto::new).collect(Collectors.toList());
+    }
+
     @Transactional
     public void delete (Long id) {
         Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 번호의 팀은 존재하지 않습니다. team_id = " + id));
         if(team.getSaveFileName()!=null && !"".equals(team.getSaveFileName())){
-            FileUtils.delete(req, imgPath+"team/"+ team.getSaveFileName());
+            FileUtils.delete(request, imgPath+"team/"+ team.getSaveFileName());
         }
         teamRepository.delete(team);
     }

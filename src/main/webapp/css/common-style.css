@@ -8,17 +8,17 @@
     border: 1px groove #000000;
 }
 
-.list_teamLogo {
+.list_logo {
     width: 50px;
     height: 50px;
 }
 
-#teamListArea td {
+#teamListArea td, #playerListArea td {
     height: 50px;
     line-height: 50px;
 }
 
-#teamListArea .customA {
+.customA {
     color: black;
     text-decoration: none;
 }
@@ -49,4 +49,13 @@
 #teamRankList_table .selected_td{
     border-right: 3px solid red;
     border-left: 3px solid red;
+}
+
+.container-wrap .searchAndBtn_area select{
+    width: 20%;
+    float: left;
+}
+
+.container-wrap .searchAndBtn_area .btn-group{
+    float: right;
 }

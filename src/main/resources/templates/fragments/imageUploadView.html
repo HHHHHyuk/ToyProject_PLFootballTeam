@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="fileUploadView">
+<div th:fragment="imageUploadView">
     <script>
         function fileUpload(){
             var form = $("#fileObj")[0].files[0];
@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-3">
                     <form id="fileForm" method="post" action="/file/upload" enctype="multipart/form-data">
-                        <label for="fileObj" class="form-label">팀 로고 이미지 파일을 등록 해주세요.</label>
+                        <label for="fileObj" class="form-label">이미지 파일을 등록 해주세요.</label>
                         <input class="form-control" type="file" id="fileObj">
                     </form>
                 </div>

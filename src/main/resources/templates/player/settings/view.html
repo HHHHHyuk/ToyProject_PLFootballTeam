@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/header :: header">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-wrap border-wrap">
+        <h1>선수관리 화면 - 선수 상세보기</h1>
+        <div class="card">
+            <img th:src="${player.imgPath}"class="card-img-top" alt="팀 로고 이미지">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${player.playerName}"></h5>
+                <p class="card-text" th:text="|국적 : ${player.nationaliy}|"></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="|팀 : ${player.teamName}|"></li>
+                <li class="list-group-item" th:text="|신장/무게 : ${player.height}cm/${player.weight}kg|"></li>
+                <li class="list-group-item" th:text="|등번호 : ${player.backNumber}|"></li>
+            </ul>
+            <div class="mb-1">
+                <a class="btn btn-primary" href="/player/settings/list">목록</a>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/webapp/js/player/settings/view.js"></script>
+</body>
+</html>
+
+

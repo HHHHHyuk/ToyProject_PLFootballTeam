@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-wrap">
+        <h1>선수관리 화면 - 리스트</h1>
+        <div class="searchAndBtn_area">
+            <select class="form-select" aria-label="Default select example" id="teamList" onchange="set_page(0);">
+                <option value>전체</option>
+                <th:block th:each="team : ${teamList}">
+                    <option th:text="${team.teamName}" th:value="${team.id}"></option>
+                </th:block>
+            </select>
+            <div class="btn-group float-right mb-1">
+                <a class="btn btn-primary" href="/player/settings/save" role="button">선수 등록</a>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-info">
+                    <th scope="col">#</th>
+                    <th scope="col">사진</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">팀</th>
+                    <th scope="col">등번호</th>
+                    <th scope="col">수정일자</th>
+                    <th scope="col">관리</th>
+                </tr>
+            </thead>
+            <tbody id="playerListArea">
+            </tbody>
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <input type="hidden" id="page" value="0"/>
+        <ul class="pagination justify-content-center" id="pageArea">
+        </ul>
+    </nav>
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/webapp/js/player/settings/list.js"></script>
+</body>
+</html>
+
+

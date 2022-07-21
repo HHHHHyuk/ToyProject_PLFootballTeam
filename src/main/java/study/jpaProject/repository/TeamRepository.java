@@ -13,5 +13,7 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     @Query("SELECT t FROM Team t ORDER BY t.id DESC")
     List<Team> findAllDesc();
 
+    List<Team> findAllByOrderByTeamNameAsc();
+
     Optional<Team> findByTeamName(@Param("teamName")  String teamName);
 }

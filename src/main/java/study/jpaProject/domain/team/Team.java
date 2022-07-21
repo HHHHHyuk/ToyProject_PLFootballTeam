@@ -8,9 +8,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 @Getter
+@Entity
 public class Team extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="team_id")

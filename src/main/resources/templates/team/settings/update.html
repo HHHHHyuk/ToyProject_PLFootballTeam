@@ -7,7 +7,7 @@
 <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container-wrap border-wrap">
         <h1>팀관리 화면 - 팀 수정</h1>
-        <input type="hidden" id="teamId" th:value="${team.id}" />
+        <input type="hidden" id="playerId" th:value="${team.id}" />
         <form class="row g-3">
             <div class="col-md-6">
                 <label for="teamName" class="form-label">팀 이름</label>
@@ -44,7 +44,7 @@
             </div>
         </form>
     </div>
-    <div th:replace="fragments/fileUploadView :: fileUploadView"></div>
+    <div th:replace="fragments/imageUploadView :: imageUploadView"></div>
     <div th:replace="fragments/footer :: footer"></div>
     <script src="/webapp/js/team/settings/update.js"></script>
 </body>

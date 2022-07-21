@@ -6,5 +6,4 @@ import lombok.Data;
 public class TeamRankSearchCondition {
     private String season;
     private String orderValue;
-    private boolean isAsc; //정렬방법 ASC, DESC
 }

@@ -26,33 +26,33 @@ public class TeamController {
     private final TeamService teamService;
     private final TeamRankService teamRankService;
 
-    @PostMapping("/api/v1/teams")
+    @PostMapping("/api/v1/team")
     public Long save(@RequestBody TeamSaveRequestDto requestDto){
        return teamService.save(requestDto);
     }
 
-    @PutMapping("/api/v1/teams/{id}")
+    @PutMapping("/api/v1/team/{id}")
     public Long update(@PathVariable Long id, @RequestBody TeamUpdateRequestDto requestDto) { return teamService.update(id, requestDto); }
 
-    @DeleteMapping("/api/v1/teams/{id}")
+    @DeleteMapping("/api/v1/team/{id}")
     public Long delete(@PathVariable Long id) {
         teamService.delete(id);
         return id;
     }
 
-    @GetMapping("/api/v1/teams")
+    @GetMapping("/api/v1/team")
     public ApiResult<Page<TeamListResponseDto>> list(Pageable pageable){
         Page<TeamListResponseDto> list = teamService.findAllDesc(pageable);
         return ApiUtils.succes(list);
     }
 
-    @GetMapping("/api/v1/teams/rank/{teamId}")
+    @GetMapping("/api/v1/team/rank/{teamId}")
     public ApiResult<TeamRankResponseDto> teamRank(@PathVariable("teamId") Long teamId, String season){
         TeamRankResponseDto responseDto = teamRankService.findBySeasonAndTeamId(season, teamId);
         return ApiUtils.succes(responseDto);
     }
 
-    @PostMapping("/api/v1/teams/rank")
+    @PostMapping("/api/v1/team/rank")
     public Long saveAndUpdateRank(@RequestBody TeamRankSaveRequestDto requestDto) { return teamRankService.save(requestDto);}
 
     @DeleteMapping("/api/v1/teams/rank/{id}")
@@ -61,7 +61,7 @@ public class TeamController {
         return id;
     }
 
-    @GetMapping("/api/v1/teams/rank")
+    @GetMapping("/api/v1/team/rank")
     public ApiResult<List<TeamRankListResponseDto>> teamRankList(TeamRankSearchCondition condition){
         return ApiUtils.succes(teamRankService.getTeamRankList(condition));
     }

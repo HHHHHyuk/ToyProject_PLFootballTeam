@@ -1,9 +1,6 @@
 package study.jpaProject.domain.player;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import study.jpaProject.domain.BaseTimeEntity;
 import study.jpaProject.domain.team.Team;
 
@@ -13,9 +10,10 @@ import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
-@Entity
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter @Setter
+@Getter
+@Entity
 public class Player extends BaseTimeEntity {
 
     @Id @GeneratedValue
@@ -38,7 +36,22 @@ public class Player extends BaseTimeEntity {
     private String originalFileName;
     private String saveFileName;
 
+    @Builder
     public Player(Team team, String playerName, String nationality, Integer height, Double weight, String position, Integer backNumber, String originalFileName, String saveFileName) {
+        this.playerName = playerName;
+        this.nationality = nationality;
+        this.height = height;
+        this.weight = weight;
+        this.position = position;
+        this.backNumber = backNumber;
+        this.originalFileName = originalFileName;
+        this.saveFileName = saveFileName;
+        if(team!=null){
+            changeTeam(team);
+        }
+    }
+
+    public void updatePlayer(Team team, String playerName, String nationality, Integer height, Double weight, String position, Integer backNumber, String originalFileName, String saveFileName){
         this.playerName = playerName;
         this.nationality = nationality;
         this.height = height;
@@ -58,3 +71,5 @@ public class Player extends BaseTimeEntity {
     }
 
 }
+
+
