@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface PlayerRepository extends JpaRepository<Player, Long> {
     List<Player> findByTeamAndBackNumber(Team team, @Param("backNumber") Integer backNumber);
+    List<Player> findByTeam(Team team);
 }

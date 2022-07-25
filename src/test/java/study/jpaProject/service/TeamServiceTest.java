@@ -105,4 +105,14 @@ class TeamServiceTest {
         //then
         assertThat(all.size()).isEqualTo(0);
     }
+
+    @Test
+    void delete_선수보유시_삭제방지_테스트() {
+        //given
+        //when
+        //then
+        assertThatThrownBy(()->{
+            teamService.delete(7L);
+        }).isInstanceOf(Exception.class).hasMessage("현재 팀에 소속된 선수가 있습니다. 팀을 삭제할 수 없습니다.");
+    }
 }

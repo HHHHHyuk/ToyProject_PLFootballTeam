@@ -19,7 +19,9 @@ import static study.jpaProject.domain.team.QTeamRank.teamRank;
 public class TeamRankQueryRepository {
 
     private final JPAQueryFactory queryFactory;
-    public TeamRankQueryRepository(EntityManager em){ this.queryFactory = new JPAQueryFactory(em);}
+    public TeamRankQueryRepository(EntityManager em){
+        this.queryFactory = new JPAQueryFactory(em);
+    }
 
     public List<TeamRank> rankList(TeamRankSearchCondition condition){
         return queryFactory

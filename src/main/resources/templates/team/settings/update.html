@@ -6,8 +6,11 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container-wrap border-wrap">
+        <div class="btn-group" style="float:right;">
+            <a role="button" class="btn btn-success btn-sm" href="/team/settings/list">목록</a>
+        </div>
         <h1>팀관리 화면 - 팀 수정</h1>
-        <input type="hidden" id="playerId" th:value="${team.id}" />
+        <input type="hidden" id="teamId" th:value="${team.id}" />
         <form class="row g-3">
             <div class="col-md-6">
                 <label for="teamName" class="form-label">팀 이름</label>
@@ -25,22 +28,24 @@
                 <label for="manager" class="form-label">감독</label>
                 <input type="text" class="form-control" id="manager" name="manager" th:value="${team.manager}">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-2">
                 <label for="foundingDate" class="form-label">창단일</label>
                 <input type="text" class="form-control" id="foundingDate" name="foundingDate" th:value="${team.foundingDate}">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="originalFileName" class="form-label">팀 로고</label>
                 <input type="text" class="form-control" id="originalFileName" name="originalFileName" th:value="${team.originalFileName}" readonly>
-                <button type="button" class="btn btn-primary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
-                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
                 <input type="hidden" id="saveFileName" name="saveFileName" th:value="${team.saveFileName}">
                 <input type="hidden" id="deleteYn" name="deleteYn" value="N">
                 <input type="hidden" id="tempFileName" name="tempFileName">
             </div>
+            <div class="col-md-auto fileBtnGroup">
+                <button type="button" class="btn btn-secondary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
+                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
+            </div>
             <div class="col-12">
-                <button type="button" onclick="update_check();" class="btn btn-primary">수정</button>
-                <button type="button" onclick="delete_check();" class="btn btn-danger">삭제</button>
+                <button type="button" onclick="delete_check();" class="btn btn-danger float_right">삭제</button>
+                <button type="button" onclick="update_check();" class="btn btn-primary float_right mr5">수정</button>
             </div>
         </form>
     </div>

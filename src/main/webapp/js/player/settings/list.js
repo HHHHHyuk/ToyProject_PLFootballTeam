@@ -21,7 +21,7 @@ function set_page(page){
                     imgPath = "/webapp/images/empty_player.png";
                 }
                 html += "<tr><td>"+r.response.content[i]['id']+"</td><td><img class=\"list_logo\" src=\""+imgPath+"\"></td><td>"+
-                    "<a class=\"customA\" href=\"/team/settings/view/"+r.response.content[i]['id']+"\">"+r.response.content[i]['playerName']+"</a></td>" +
+                    "<a class=\"customA\" href=\"/player/settings/view/"+r.response.content[i]['id']+"\">"+r.response.content[i]['playerName']+"</a></td>" +
                     "<td>"+r.response.content[i]['teamName']+"</td><td>"+r.response.content[i]['backNumber']+"</td><td>"+r.response.content[i]['lastModifiedDate']+"</td><td>"+
                     "<a  class=\"btn btn-outline-danger btn-sm\" href=\"/player/settings/update/"+r.response.content[i]['id']+"\">수정</a> <a  class=\"btn btn-primary btn-sm\" role=\"button\" href=\"/player/settings/rank/save/"+r.response.content[i]['id']+"\">시즌기록관리</a></td></tr>";
             }

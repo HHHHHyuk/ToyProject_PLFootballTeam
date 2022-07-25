@@ -9,13 +9,13 @@
     <div class="container-wrap">
         <h1>선수관리 화면 - 리스트</h1>
         <div class="searchAndBtn_area">
-            <select class="form-select" aria-label="Default select example" id="teamList" onchange="set_page(0);">
+            <select class="form-select mb10" aria-label="Default select example" id="teamList" onchange="set_page(0);">
                 <option value>전체</option>
                 <th:block th:each="team : ${teamList}">
                     <option th:text="${team.teamName}" th:value="${team.id}"></option>
                 </th:block>
             </select>
-            <div class="btn-group float-right mb-1">
+            <div class="btn-group float-right mb10">
                 <a class="btn btn-primary" href="/player/settings/save" role="button">선수 등록</a>
             </div>
         </div>

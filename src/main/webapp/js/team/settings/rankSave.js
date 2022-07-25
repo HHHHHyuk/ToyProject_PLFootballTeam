@@ -69,7 +69,7 @@ function delete_season(){
                 }).done(function(r){
                     window.location.href="/team/settings/rank/save/"+teamId;
                 }).fail(function(r){
-                    alert(r);
+                    alert(r.responseJSON.error.message);
                 });
         }
     }

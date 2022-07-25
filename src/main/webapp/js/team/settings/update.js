@@ -44,7 +44,7 @@ function update_check(){
         }).done(function(r){
             window.location.href="/team/settings/view/"+r;
         }).fail(function(r){
-            alert(r);
+            alert(r.responseJSON.error.message);
         });
     }
 }
@@ -59,7 +59,7 @@ function delete_check(){
     }).done(function(r){
         window.location.href="/team/settings/list";
     }).fail(function(r){
-        alert(r);
+        alert(r.responseJSON.error.message);
     });
 }
 

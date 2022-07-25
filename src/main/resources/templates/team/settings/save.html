@@ -7,6 +7,9 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container-wrap border-wrap">
+        <div class="btn-group" style="float:right;">
+            <a role="button" class="btn btn-success btn-sm" href="/team/settings/list">목록</a>
+        </div>
         <h1>팀관리 화면 - 팀 등록</h1>
         <form class="row g-3" method="post" action="/team/settings/list" onsubmit="return save_check();">
             <div class="col-md-6">
@@ -25,21 +28,23 @@
                 <label for="manager" class="form-label">감독</label>
                 <input type="text" class="form-control" id="manager" name="manager">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-2">
                 <label for="foundingDate" class="form-label">창단일</label>
                 <input type="text" class="form-control" id="foundingDate" name="foundingDate">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="originalFileName" class="form-label">팀 로고</label>
                 <input type="text" class="form-control" id="originalFileName" name="originalFileName" readonly>
-                <button type="button" class="btn btn-primary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
-                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
                 <input type="hidden" id="saveFileName" name="saveFileName">
                 <input type="hidden" id="deleteYn" name="deleteYn">
                 <input type="hidden" id="tempFileName" name="tempFileName">
             </div>
+            <div class="col-md-auto fileBtnGroup">
+                <button type="button" class="btn btn-secondary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
+                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
+            </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="submit" class="btn btn-primary float_right">등록</button>
             </div>
         </form>
     </div>

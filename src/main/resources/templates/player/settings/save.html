@@ -7,6 +7,9 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container-wrap border-wrap">
+        <div class="btn-group" style="float:right;">
+            <a role="button" class="btn btn-success btn-sm" href="/player/settings/list">목록</a>
+        </div>
         <h1>선수관리 화면 - 선수 등록</h1>
         <form class="row g-3" id="playerSaveForm" method="post" onsubmit="return save_check();">
             <div class="col-md-12">
@@ -45,14 +48,16 @@
             <div class="col-md-4">
                 <label for="originalFileName" class="form-label">선수 이미지</label>
                 <input type="text" class="form-control" id="originalFileName" name="originalFileName" readonly>
-                <button type="button" class="btn btn-primary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
-                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
                 <input type="hidden" id="saveFileName" name="saveFileName">
                 <input type="hidden" id="deleteYn" name="deleteYn">
                 <input type="hidden" id="tempFileName" name="tempFileName">
             </div>
+            <div class="col-md-auto fileBtnGroup">
+                <button type="button" class="btn btn-secondary" id="fileUploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">파일 업로드</button>
+                <button type="button" class="btn btn-danger" id="fileDelete">파일 삭제</button>
+            </div>
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="submit" class="btn btn-primary float_right">등록</button>
             </div>
         </form>
     </div>

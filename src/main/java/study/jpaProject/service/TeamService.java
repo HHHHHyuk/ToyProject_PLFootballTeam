@@ -6,8 +6,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import study.jpaProject.domain.player.Player;
 import study.jpaProject.domain.team.Team;
 import study.jpaProject.error.CustomException;
+import study.jpaProject.repository.PlayerRepository;
 import study.jpaProject.repository.TeamQueryRepository;
 import study.jpaProject.repository.TeamRepository;
 import study.jpaProject.utils.FileUtils;
@@ -27,6 +29,7 @@ public class TeamService {
 
     private final TeamRepository teamRepository;
     private final TeamQueryRepository teamQueryRepository;
+    private final PlayerRepository playerRepository;
 
     private final HttpServletRequest request;
 
@@ -89,6 +92,7 @@ public class TeamService {
     @Transactional
     public void delete (Long id) {
         Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 번호의 팀은 존재하지 않습니다. team_id = " + id));
+        if(!playerRepository.findByTeam(team).isEmpty()) throw new CustomException("현재 팀에 소속된 선수가 있습니다. 팀을 삭제할 수 없습니다.");
         if(team.getSaveFileName()!=null && !"".equals(team.getSaveFileName())){
             FileUtils.delete(request, imgPath+"team/"+ team.getSaveFileName());
         }

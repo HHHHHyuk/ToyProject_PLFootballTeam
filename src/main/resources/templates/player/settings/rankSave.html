@@ -7,6 +7,9 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container-wrap border-wrap">
+        <div class="btn-group" style="float:right;">
+            <a role="button" class="btn btn-success btn-sm" href="/player/settings/list">목록</a>
+        </div>
         <h1>팀관리 화면 - 팀 시즌 기록 관리</h1>
         <form class="row g-3" method="post" th:action="|/team/settings/rank/save/${team.id}|" onsubmit="return save_check();">
             <input type="hidden" id="teamId" th:value="${team.id}">
@@ -46,7 +49,6 @@
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">저장</button>
                 <button type="button" class="btn btn-danger" onclick="delete_season();">시즌기록 삭제</button>
-                <a role="button" class="btn btn-success" href="/team/settings/list">목록</a>
             </div>
         </form>
     </div>
