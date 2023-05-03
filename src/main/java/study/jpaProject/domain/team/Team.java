@@ -12,7 +12,8 @@ import java.util.List;
 @Getter
 @Entity
 public class Team extends BaseTimeEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="team_id")
     private Long id;
 

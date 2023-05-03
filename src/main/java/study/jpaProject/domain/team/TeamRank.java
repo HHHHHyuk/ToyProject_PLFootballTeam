@@ -12,7 +12,8 @@ import static javax.persistence.FetchType.*;
 @Getter
 public class TeamRank extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="team_rank_id")
     private Long id;
 
