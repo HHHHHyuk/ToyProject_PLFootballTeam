@@ -16,7 +16,7 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 public class Player extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="player_id")
     private Long id;
 
