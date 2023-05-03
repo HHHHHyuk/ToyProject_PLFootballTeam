@@ -132,7 +132,6 @@ class TeamServiceTest {
             clothesNames.add(clothes[i][0]);
         }
 
-        for(List<String> a : clothesMap.val)
 
         System.out.println(clothesMap);
 
